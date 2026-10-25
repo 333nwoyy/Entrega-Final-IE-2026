@@ -1,0 +1,452 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #F6ECFA;
+    font-family: 'DM Sans', sans-serif;
+    color: #1D1D1D;
+}
+
+.portafolio {
+    max-width: 1728px;
+    margin: auto;
+    min-height: 100vh;
+    padding: 50px 5%;
+    position: relative;
+}
+
+h1 {
+    font-size: 4.4rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -3px;
+    margin-bottom: 10px;
+}
+
+.autor {
+    font-size: 1rem;
+    color: #686868;
+    margin-bottom: 70px;
+}
+
+.columna-izquierda {
+    position: absolute;
+    left: 5%;
+    top: 170px;
+    width: 340px;
+}
+
+/* CONTENEDOR Y WIKIS ALINEADOS VERTICALMENTE CON EL CUADRO DE TEXTO (340px) */
+
+.contenedor-wikis {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    width: 340px;
+    margin-bottom: 35px;
+}
+
+.wiki {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background: #8A1CB8;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+
+    transition: .3s;
+}
+
+.wiki:hover {
+    transform: translateY(-5px);
+    background: #A226D8;
+}
+
+/* RECUADROS DE TEXTO */
+
+.texto {
+    background: white;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+    margin-bottom: 25px;
+    width: 340px;
+}
+
+.texto h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.texto p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* AREA DE ENCARGOS */
+
+.encargos {
+    position: absolute;
+    top: 170px;
+    left: 37%;
+    right: 5%;
+}
+
+.fila {
+    display: flex;
+    align-items: center;
+}
+
+.fila-superior {
+    gap: 30px;
+    margin-bottom: 90px;
+}
+
+.fila-media {
+    justify-content: space-between;
+    margin-bottom: 70px;
+}
+
+.fila-inferior {
+    justify-content: center;
+}
+
+/* CIRCULOS DE ENCARGOS (285px) */
+
+.circulo {
+    text-decoration: none;
+    color: #1d1d1d;
+    text-align: center;
+    flex: 0 0 285px;
+    cursor: pointer;
+}
+
+.bola {
+    width: 285px;
+    height: 285px;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: #B13BE5;
+
+    box-shadow: 0 10px 30px rgba(177, 59, 229, 0.30);
+
+    transition: .3s;
+}
+
+.bola svg,
+.bola img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.circulo:hover .bola {
+    transform: scale(1.06);
+}
+
+.circulo p {
+    margin-top: 18px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.conexion {
+    flex: 1;
+    border-top: 2px dashed #7A1DAF;
+    margin: 0 10px;
+}
+
+/* MODAL DE VISTA PREVIA CON EL COLOR DE BITÁCORA (#8A1CB8) */
+
+.modal-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(20, 20, 20, 0.65);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 10000;
+}
+
+.modal-preview.activo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-contenido {
+    position: relative;
+    width: 92vw;
+    height: 90vh;
+    max-width: 1100px;
+    background: #8A1CB8;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.modal-subtitulo {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.modal-titulo {
+    font-family: 'Courier Prime', monospace;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.btn-cerrar {
+    width: 42px;
+    height: 42px;
+    background: #8A1CB8;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-cerrar:hover {
+    background: #A226D8;
+    border-color: #ffffff;
+}
+
+/* CENTRADO PERFECTO Y COMPLETO SIN RECORTE DEL CANVAS P5.JS */
+
+.modal-body {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iframe-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.iframe-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    object-fit: contain;
+    transform: scale(1);
+    transform-origin: center center;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+}
+
+.modal-leyenda {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.btn-externo {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.9rem;
+    color: #ffffff;
+    text-decoration: none;
+    background: #8A1CB8;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px 18px;
+    border-radius: 2px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-externo:hover {
+    background: #A226D8;
+    border-color: #ffffff;
+}
+
+/* TABLETS Y NOTEBOOKS */
+
+@media(max-width: 1350px) {
+
+    .circulo {
+        flex-basis: 220px;
+    }
+
+    .bola {
+        width: 220px;
+        height: 220px;
+    }
+
+}
+
+@media(max-width: 1100px) {
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .columna-izquierda {
+        width: 260px;
+    }
+
+    .contenedor-wikis,
+    .texto {
+        width: 260px;
+        gap: 20px;
+    }
+
+    .wiki {
+        width: 120px;
+        height: 120px;
+    }
+
+    .encargos {
+        left: 33%;
+    }
+
+    .circulo {
+        flex-basis: 175px;
+    }
+
+    .bola {
+        width: 175px;
+        height: 175px;
+    }
+
+}
+
+/* CELULARES */
+
+@media(max-width: 700px) {
+
+    .portafolio {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 2.3rem;
+    }
+
+    .columna-izquierda,
+    .encargos {
+        position: static;
+        width: 100%;
+    }
+
+    .columna-izquierda {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contenedor-wikis {
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .texto {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .encargos {
+        margin-top: 50px;
+    }
+
+    .fila {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 35px;
+    }
+
+    .conexion {
+        display: none;
+    }
+
+    .circulo {
+        flex: 0 0 180px;
+    }
+
+    .bola {
+        width: 180px;
+        height: 180px;
+    }
+
+    .wiki {
+        width: 130px;
+        height: 130px;
+    }
+
+    .modal-contenido {
+        padding: 15px;
+        height: 94vh;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .modal-titulo {
+        font-size: 1.6rem;
+    }
+
+}
